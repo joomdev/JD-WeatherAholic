@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>JD WeatherAholic</name>
+	<creationDate>August 2016</creationDate>
+	<version>1.4.4</version>
+	<author>JoomDev (Formerly GraphicAholic)</author>
+	<copyright>Copyright (C) 2020 Joomdev, Inc. All rights reserved.</copyright>
+	<license>http://www.gnu.org/copyleft/lgpl.html</license>
+	<authorEmail>info@joomdev.com</authorEmail>
+	<authorUrl>https://www.joomdev.com</authorUrl>
+	
+	<description><![CDATA[
+		<div class="alert alert-info" style="font-weight: normal;">
+			<img src="../modules/mod_weatheraholic/images/thumbnail.jpg" alt="JD WeatherAholic"/>
+			<h3>JD WeatherAholic</h3>
+			<p>JD WeatherAhoic Formerly known as WeatherAholic from GraphicAholic is a Joomla Weather Module to display weather feeds on your Joomla based website.</p>
+			<p>JD WeatherAholic Formerly known as WeatherAholic from has been moved to <a href="https://www.joomdev.com/products/extensions/jd-weatheraholic" target="_blank">Joomdev</a>. <strong>Check out the <a href="https://www.joomdev.com/graphicaholic" target="_blank">Announcement here</a>.</strong></p>
+			<a href="https://www.joomdev.com/forum/jd-weatheraholic" target="_blank">Support</a> | <span>Demo</span> | <a href="https://www.joomdev.com/products/extensions/jd-weatheraholic" target="_blank">More Details</a>
+		</div>	
+	]]>
+	</description>
+	
+	<files>
+		<filename module="mod_weatheraholic">mod_weatheraholic.php</filename>
+		<folder>js</folder>
+		<folder>css</folder>
+		<folder>tmpl</folder>
+		<folder>fields</folder>
+		<folder>fonts</folder>
+		<folder>images</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_weatheraholic.xml</filename>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">en-GB.mod_weatheraholic.ini</language>
+		<language tag="en-GB">en-GB.mod_weatheraholic.sys.ini</language>
+	</languages>
+	
+	<updateservers>
+		<server type="extension" priority="1" name="JD WeatherAholic">https://joomdev.com/updates/weatheraholic.xml</server>
+	</updateservers>
+	
+	<config>
+		<fields name="params" addfieldpath="/modules/mod_weatheraholic/fields">
+			<!-- General Settings -->
+			<fieldset name="general" group="general" label="General Settings">
+				<field name="weatheraholicLocation" type="text" default="Your City, ST" label="MOD_JD_WEATHERAHOLIC_YOUR_CITY_AND_STATE" description="MOD_JD_WEATHERAHOLIC_YOUR_CITY_AND_STATE_DESC" />
+				<field name="regionName" type="text" default="" label="MOD_JD_WEATHERAHOLIC_STATE_OR_PROVINCE_OPTIONAL" description="MOD_JD_WEATHERAHOLIC_STATE_OR_PROVINCE_OPTIONAL_DESC" />
+				<field name="weatheraholicCityname" type="list" default="true" label="MOD_JD_WEATHERAHOLIC_DISPLAY_COUNTRY_NAME" description="MOD_JD_WEATHERAHOLIC_DISPLAY_COUNTRY_NAME_DESC">
+					<option value="false">JYES</option>
+					<option value="true">JNO</option>
+				</field>
+				<field name="weatheraholicCountry" type="text" default="USA" label="MOD_JD_WEATHERAHOLIC_YOUR_COUNTRY" description="MOD_JD_WEATHERAHOLIC_YOUR_COUNTRY_DESC" />
+				<field name="note01" type="note" showon="weatheraholicAPI:yahoo" label="Yahoo is selling off all of it's assets to anyone willing to pay their price! With this, the Yahoo Weather feed may stop working without notice. This is totally out of our control." />
+				<field name="weatheraholicAPI" type="list" default="yahoo" label="MOD_JD_WEATHERAHOLIC_WHAT_FEED" description="MOD_JD_WEATHERAHOLIC_WHAT_FEED_DESC">
+					<option value="yahoo">MOD_JD_WEATHERAHOLIC_YAHOO_WEATHER</option>
+					<option value="openweathermap">MOD_JD_WEATHERAHOLIC_OPEN_WEATHER</option>
+				</field>
+				<field name="weatheraholicDesc" type="list" default="0" label="MOD_JD_WEATHERAHOLIC_TEXT_UNDER_WEATHER_ICON" description="MOD_JD_WEATHERAHOLIC_TEXT_UNDER_WEATHER_ICON_DESC">
+					<option value="0">JYES</option>
+					<option value="1">JNO</option>
+				</field>
+				<field name="weatheraholicAPIkey" type="text" showon="weatheraholicAPI:openweathermap" default="" label="MOD_JD_WEATHERAHOLIC_OPEN_WEATHER_API_KEY" description="MOD_JD_WEATHERAHOLIC_OPEN_WEATHER_API_KEY_DESC" />
+				<field name="openweatherAPIage" type="radio" class="btn-group" showon="weatheraholicAPI:openweathermap" default="1" label="MOD_JD_WEATHERAHOLIC_OPEN_WEATHER_API_OLD_NEW" description="MOD_JD_WEATHERAHOLIC_OPEN_WEATHER_API_OLD_NEW_DESC">
+					<option value="1">MOD_JD_WEATHERAHOLIC_NEW</option>
+					<option value="2">MOD_JD_WEATHERAHOLIC_OLD</option>
+				</field>
+				<field name="countrylanguageCode" type="text" showon="weatheraholicAPI:openweathermap" default="en" label="MOD_JD_WEATHERAHOLIC_COUNTRY_LANGUAGE_CODE" description="MOD_JD_WEATHERAHOLIC_COUNTRY_LANGUAGE_CODE_DESC" />
+				<field name="weatheraholicView" type="list" default="full" label="MOD_JD_WEATHERAHOLIC_SELECT_WHAT_TO_DISPLAY" description="Select the option, Full, Partial, Simple, Today or Forecase you want to display.">
+					<option value="full">MOD_JD_WEATHERAHOLIC_FULL</option>
+					<option value="partial">MOD_JD_WEATHERAHOLIC_PARTIAL</option>
+					<option value="simple">MOD_JD_WEATHERAHOLIC_SIMPLE</option>
+					<option value="today">MOD_JD_WEATHERAHOLIC_TODAY</option>
+					<option value="forecast">MOD_JD_WEATHERAHOLIC_FORECAST</option>
+				</field>
+				<field name="weatheraholicForecast" type="list" showon="openweatherAPIage:2" default="0" label="MOD_JD_WEATHERAHOLIC_FORECAST_DAYS" description="MOD_JD_WEATHERAHOLIC_FORECAST_DAYS_DESC">
+					<option value="0">MOD_JD_WEATHERAHOLIC_FORECAST_DAYS_NONE</option>
+					<option value="1">MOD_JD_WEATHERAHOLIC_FORECAST_DAYS_ONE</option>
+					<option value="2">MOD_JD_WEATHERAHOLIC_FORECAST_DAYS_TWO</option>
+					<option value="3">MOD_JD_WEATHERAHOLIC_FORECAST_DAYS_THREE</option>
+					<option value="4">MOD_JD_WEATHERAHOLIC_FORECAST_DAYS_FOUR</option>
+					<option value="5">MOD_JD_WEATHERAHOLIC_FORECAST_DAYS_FIVE</option>
+				</field>
+				<field name="weatheraholicAnimation" type="list" default="true" label="MOD_JD_WEATHERAHOLIC_LOADING_ANIMATION" description="MOD_JD_WEATHERAHOLIC_LOADING_ANIMATION_DESC">
+					<option value="true">JYES</option>
+					<option value="false">JNO</option>
+				</field>
+				<field name="weatheraholicUnits" type="list" default="auto" label="MOD_JD_WEATHERAHOLIC_UNITS_TO_SHOW" description="MOD_JD_WEATHERAHOLIC_UNITS_TO_SHOW_DESC">
+					<option value="auto">MOD_JD_WEATHERAHOLIC_AUTO_SELECT_UNITS</option>
+					<option value="metric">MOD_JD_WEATHERAHOLIC_CELSIUS_UNITS</option>
+					<option value="imperial">MOD_JD_WEATHERAHOLIC_FAHRENHEIT_UNITS</option>
+				</field>
+				<field name="weatheraholicTime" type="list" default="12" label="MOD_JD_WEATHERAHOLIC_DISPLAY_TIME" description="MOD_JD_WEATHERAHOLIC_DISPLAY_TIME_DESC">
+					<option value="12">MOD_JD_WEATHERAHOLIC_DISPLAY_12HOUR</option>
+					<option value="24">MOD_JD_WEATHERAHOLIC_DISPLAY_24HOUR</option>
+				</field>
+				<field name="weatheraholicAutoRefresh" type="list" default="1" label="MOD_JD_WEATHERAHOLIC_AUTO_UPDATE" description="MOD_JD_WEATHERAHOLIC_AUTO_UPDATE_DESC">
+					<option value="2">JYES</option>
+					<option value="1">JNO</option>
+				</field>
+				<field name="weatheraholicAutoRefreshRate" type="text" showon="weatheraholicAutoRefresh:2" default="5" label="MOD_JD_WEATHERAHOLIC_AUTO_UPDATE_MINUTES" description="MOD_JD_WEATHERAHOLIC_AUTO_UPDATE_MINUTES_DESC" />
+				<field name="weatheraholicPretext" type="textarea" filter="safehtml" default="" label="MOD_JD_WEATHERAHOLIC_PRETEXT" description="MOD_JD_WEATHERAHOLIC_PRETEXT_DESC" />
+				<field name="weatheraholicPosttext" type="textarea" filter="safehtml" default="" label="MOD_JD_WEATHERAHOLIC_POSTTEXT" description="MOD_JD_WEATHERAHOLIC_POSTTEXT_DESC" />
+			</fieldset>
+			<!-- Language Settings -->
+			<fieldset name="language" group="language" label="Language Settings">
+				<field name="languageSunday" type="text" default="Sunday" label="MOD_JD_WEATHERAHOLIC_TRANSLATE_SUNDAY" description="MOD_JD_WEATHERAHOLIC_TRANSLATE_SUNDAY_DESC" />
+				<field name="languageMonday" type="text" default="Monday" label="MOD_JD_WEATHERAHOLIC_TRANSLATE_MONDAY" description="MOD_JD_WEATHERAHOLIC_TRANSLATE_MONDAY_DESC" />
+				<field name="languageTuesday" type="text" default="Tuesday" label="MOD_JD_WEATHERAHOLIC_TRANSLATE_TUESDAY" description="MOD_JD_WEATHERAHOLIC_TRANSLATE_TUESDAY_DESC" />
+				<field name="languageWednesday" type="text" default="Wednesday" label="MOD_JD_WEATHERAHOLIC_TRANSLATE_WEDNESDAY" description="MOD_JD_WEATHERAHOLIC_TRANSLATE_WEDNESDAY_DESC" />
+				<field name="languageThursday" type="text" default="Thursday" label="MOD_JD_WEATHERAHOLIC_TRANSLATE_THURSDAY" description="MOD_JD_WEATHERAHOLIC_TRANSLATE_THURSDAY_DESC" />
+				<field name="languageFriday" type="text" default="Friday" label="MOD_JD_WEATHERAHOLIC_TRANSLATE_FRIDAY" description="MOD_JD_WEATHERAHOLIC_TRANSLATE_FRIDAY_DESC" />
+				<field name="languageSaturday" type="text" default="Saturday" label="MOD_JD_WEATHERAHOLIC_TRANSLATE_SATURDAY" description="MOD_JD_WEATHERAHOLIC_TRANSLATE_SATURDAY_DESC" />
+			</fieldset>
+			<!-- Style Settings -->
+			<fieldset name="style" group="style" label="Style Settings">
+				<field name="displayLocation" type="list" default="0" label="MOD_JD_WEATHERAHOLIC_DISPLAY_LOCATION_HEADER" description="">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="weatheraholicFont" type="list" showon="displayLocation:1" default="h2" label="MOD_JD_WEATHERAHOLIC_LOCATION_TITLE_SIZE" description="MOD_JD_WEATHERAHOLIC_LOCATION_TITLE_SIZE_DESC">
+					<option value="h1">H1</option>
+					<option value="h2">H2</option>
+					<option value="h3">H3</option>
+					<option value="h4">H4</option>
+					<option value="h5">H5</option>
+					<option value="h6">H6</option>
+				</field>
+				<field name="choosebackgroundEffect" type="list" default="0" label="MOD_JD_WEATHERAHOLIC_CHOOSE_TYPE_BACKGROUND" description="">
+					<option value="0">MOD_JD_WEATHERAHOLIC_NO_BACKGROUND_EFFECT</option>
+					<option value="1">MOD_JD_WEATHERAHOLIC_COLOR_BACKGROUND</option>
+					<option value="2">MOD_JD_WEATHERAHOLIC_IMAGE_BACKGROUND</option>
+				</field>
+				<field name="weatheraholicBackground" type="truecolors" showon="choosebackgroundEffect:1" default="rgb(255,255,255,1)" label="MOD_JD_WEATHERAHOLIC_BACKGROUND_COLOR" format="rgb" opacity="1.0" description="MOD_JD_WEATHERAHOLIC_BACKGROUND_COLOR_DESC" />
+				<field name="weatheraholicBackgroundImage" type="media" showon="choosebackgroundEffect:2" default="" label="MOD_JD_WEATHERAHOLIC_CHOOSE_BACKGROUND_IMAGE" description="MOD_JD_WEATHERAHOLIC_CHOOSE_BACKGROUND_IMAGE_DESC" />
+				<field name="weatheraholicImageRepeat" type="list" showon="choosebackgroundEffect:2" default="repeat" label="MOD_JD_WEATHERAHOLIC_REPEAT_BACKGROUND_IMAGE" description="">
+					<option value="repeat">JYES</option>
+					<option value="no-repeat">JNO</option>
+				</field>
+				<field name="weatheraholicColor" type="truecolors" default="rgb(0,0,0,1)" label="MOD_JD_WEATHERAHOLIC_MODULE_TEXT_COLOR" format="rgb" opacity="1.0" description="MOD_JD_WEATHERAHOLIC_MODULE_TEXT_COLOR_DESC" />
+
+				<field name="weatheraholicShadowEffext" type="list" default="0" label="MOD_JD_WEATHERAHOLIC_SHADOW_EFFECT" description="">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="weatheraholicShadow" type="truecolors" showon="weatheraholicShadowEffext:1" default="" label="MOD_JD_WEATHERAHOLIC_SHADOW_COLOR" format="rgb" opacity="1.0" description="MOD_JD_WEATHERAHOLIC_SHADOW_COLOR_DESC" />
+				<field name="weatheraholicDistance" type="text" showon="weatheraholicShadowEffext:1" default="0" label="MOD_JD_WEATHERAHOLIC_SHADOW_DISTANCE" description="MOD_JD_WEATHERAHOLIC_SHADOW_DISTANCE_DESC" />
+				<field name="weatheraholicBlur" type="text" showon="weatheraholicShadowEffext:1" default="0" label="MOD_JD_WEATHERAHOLIC_SHADOW_BLUR" description="MOD_JD_WEATHERAHOLIC_SHADOW_BLUR_DESC" />
+				<field name="weatheraholicWidth" type="text" default="100%" label="MOD_JD_WEATHERAHOLIC_MODULE_WIDTH" description="MOD_JD_WEATHERAHOLIC_MODULE_WIDTH_DESC" />
+			</fieldset>
+			<!-- Advanced Settings -->
+			<fieldset name="advanced" group="advanced">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="fieldMODULECLASSSUFFIX" />
+				<field name="cache" type="radio" class="btn-group" default="1" label="Caching" description="Select whether to cache the content of this module">
+					<option value="1">Use global</option>
+					<option value="0">No caching</option>
+				</field>
+				<field name="cache_time" type="text" default="900" label="Cache Time" description="The time before the module is recached" />
+				<field name="documentation" type="docs" default="900" label="" description="" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
