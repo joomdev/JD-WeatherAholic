@@ -83,7 +83,7 @@ $path		= $params->get('path');
 		thursday: "<?php echo $params->get('languageThursday') ?>",	
 		friday: "<?php echo $params->get('languageFriday') ?>",	
 		saturday: "<?php echo $params->get('languageSaturday') ?>",	
-		api: "<?php echo $params->get('weatheraholicAPI') ?>", //default: openweathermap (openweathermap or yahoo)	
+		api: "openweathermap", //default: openweathermap (openweathermap or yahoo)	
 		<?php if ($weatheraholicAPI == "openweathermap"): ?>
 		apikey: "<?php echo $params->get('weatheraholicAPIkey') ?>",   //optional api key for openweather	
 		languageCode: "<?php echo $params->get('countrylanguageCode') ?>",   //optional api key for openweather	

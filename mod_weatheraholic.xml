@@ -54,8 +54,7 @@
 				</field>
 				<field name="weatheraholicCountry" type="text" default="USA" label="MOD_JD_WEATHERAHOLIC_YOUR_COUNTRY" description="MOD_JD_WEATHERAHOLIC_YOUR_COUNTRY_DESC" />
 				<field name="note01" type="note" showon="weatheraholicAPI:yahoo" label="Yahoo is selling off all of it's assets to anyone willing to pay their price! With this, the Yahoo Weather feed may stop working without notice. This is totally out of our control." />
-				<field name="weatheraholicAPI" type="list" default="yahoo" label="MOD_JD_WEATHERAHOLIC_WHAT_FEED" description="MOD_JD_WEATHERAHOLIC_WHAT_FEED_DESC">
-					<option value="yahoo">MOD_JD_WEATHERAHOLIC_YAHOO_WEATHER</option>
+				<field name="weatheraholicAPI" type="list" default="openweathermap" label="MOD_JD_WEATHERAHOLIC_WHAT_FEED" description="MOD_JD_WEATHERAHOLIC_WHAT_FEED_DESC">
 					<option value="openweathermap">MOD_JD_WEATHERAHOLIC_OPEN_WEATHER</option>
 				</field>
 				<field name="weatheraholicDesc" type="list" default="0" label="MOD_JD_WEATHERAHOLIC_TEXT_UNDER_WEATHER_ICON" description="MOD_JD_WEATHERAHOLIC_TEXT_UNDER_WEATHER_ICON_DESC">
